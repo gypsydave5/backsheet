@@ -1,10 +1,12 @@
 package backsheet
 
 import (
-	"io"
 	"net/http"
 )
 
-func Server(response io.Writer, request *http.Request) {
-
+func Server(response http.ResponseWriter, request *http.Request) {
+	if request.URL.Path == "/" {
+		return
+	}
+	response.WriteHeader(http.StatusNotFound)
 }
