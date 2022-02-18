@@ -15,14 +15,6 @@ func (s Server) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	res.Write([]byte(sheet.ToJSON()))
 }
 
-type Spreadsheet interface {
-	Sheet(string) (Sheet, error)
-}
-
-type Sheet interface {
-	ToJSON() string
-}
-
 func NewServer(spreadsheet Spreadsheet) Server {
 	return Server{spreadsheet}
 }
